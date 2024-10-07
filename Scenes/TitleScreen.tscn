@@ -1,0 +1,934 @@
+[gd_scene load_steps=44 format=3 uid="uid://dydtjixyc8tph"]
+
+[ext_resource type="Script" path="res://Scripts/TitleScreen.gd" id="1_0ctw3"]
+[ext_resource type="FontFile" uid="uid://des2o50dn2jiv" path="res://Resources/StandardFont.ttf" id="2_6jh7q"]
+[ext_resource type="AudioStream" uid="uid://7dag6l6ct31i" path="res://Audio/SFX/ButtonPressSFX.wav" id="2_ah42v"]
+[ext_resource type="Texture2D" uid="uid://dvqirgv7edcbl" path="res://Sprites/NormalHandle.png" id="3_abh0u"]
+[ext_resource type="AudioStream" uid="uid://cg5rhqnborcqw" path="res://Audio/Music/Forest_Ambience.mp3" id="3_kxq8p"]
+[ext_resource type="Texture2D" uid="uid://ibcjbfi121fm" path="res://Sprites/NineRect.png" id="3_l781b"]
+[ext_resource type="Texture2D" uid="uid://chc12ee5lwist" path="res://Sprites/HighlightedHandle.png" id="4_6qcnc"]
+[ext_resource type="StyleBox" uid="uid://dvnstsfb450js" path="res://Resources/ButtonDisabled.tres" id="4_vjr1q"]
+[ext_resource type="Texture2D" uid="uid://dta712k6d87h2" path="res://Sprites/DisabledHandle.png" id="5_npbld"]
+[ext_resource type="StyleBox" uid="uid://d3fcxkj3bfaco" path="res://Resources/ButtonHover.tres" id="5_pppfr"]
+[ext_resource type="StyleBox" uid="uid://b5f0njtko6qey" path="res://Resources/Slider.tres" id="6_fj2mv"]
+[ext_resource type="StyleBox" uid="uid://dkhsotgxrhmk2" path="res://Resources/ButtonPressed.tres" id="6_tsr2g"]
+[ext_resource type="StyleBox" uid="uid://8g2ena73biih" path="res://Resources/GrbberSlider.tres" id="7_j4bon"]
+[ext_resource type="StyleBox" uid="uid://mmpkci82gc4v" path="res://Resources/ButtonNormal.tres" id="7_xuysn"]
+[ext_resource type="Texture2D" uid="uid://csuqwqeg2gvo4" path="res://Sprites/BirdEnemy-Sheet.png" id="14_27yvi"]
+[ext_resource type="Texture2D" uid="uid://bwn7wr5fvpms1" path="res://Sprites/Frog.png" id="15_u58j3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ge7xm"]
+font = ExtResource("2_6jh7q")
+font_size = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_20m61"]
+font = ExtResource("2_6jh7q")
+font_size = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_baiac"]
+font = ExtResource("2_6jh7q")
+font_size = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_b0myi"]
+font = ExtResource("2_6jh7q")
+font_size = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_yyosj"]
+font = ExtResource("2_6jh7q")
+
+[sub_resource type="LabelSettings" id="LabelSettings_pjys5"]
+font = ExtResource("2_6jh7q")
+font_size = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_867bs"]
+font = ExtResource("2_6jh7q")
+font_size = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_o8ps7"]
+font = ExtResource("2_6jh7q")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_0np2p"]
+font = ExtResource("2_6jh7q")
+font_size = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_ldphe"]
+font = ExtResource("2_6jh7q")
+
+[sub_resource type="LabelSettings" id="LabelSettings_xkc3l"]
+font = ExtResource("2_6jh7q")
+font_size = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_in646"]
+font = ExtResource("2_6jh7q")
+font_size = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_66x0l"]
+font = ExtResource("2_6jh7q")
+font_size = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_jx7s4"]
+font = ExtResource("2_6jh7q")
+font_size = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_7r714"]
+font = ExtResource("2_6jh7q")
+font_size = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_7on4s"]
+font = ExtResource("2_6jh7q")
+font_size = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_dfr57"]
+font = ExtResource("2_6jh7q")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_50aq5"]
+font = ExtResource("2_6jh7q")
+font_size = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_jmd16"]
+font = ExtResource("2_6jh7q")
+font_size = 4
+
+[sub_resource type="Theme" id="Theme_xdpyo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_cmcnw"]
+font = ExtResource("2_6jh7q")
+font_size = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_y72d0"]
+font = ExtResource("2_6jh7q")
+font_size = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_w6abh"]
+font = ExtResource("2_6jh7q")
+
+[sub_resource type="LabelSettings" id="LabelSettings_tlvmb"]
+font = ExtResource("2_6jh7q")
+font_size = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_4rdyb"]
+font = ExtResource("2_6jh7q")
+font_size = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_4ugtw"]
+font = ExtResource("2_6jh7q")
+font_size = 12
+
+[sub_resource type="Environment" id="Environment_0ggx6"]
+background_mode = 3
+tonemap_mode = 3
+glow_normalized = true
+glow_strength = 0.5
+glow_bloom = 1.0
+adjustment_enabled = true
+adjustment_contrast = 1.1
+adjustment_saturation = 1.1
+
+[node name="TitleScreen" type="Node2D"]
+script = ExtResource("1_0ctw3")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="TitlePanel" type="NinePatchRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = -272.0
+offset_right = 480.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_l781b")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="StartGame" type="Button" parent="TitlePanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 80.0
+offset_top = -136.0
+offset_right = 288.0
+offset_bottom = -88.0
+grow_vertical = 2
+theme_override_styles/disabled = ExtResource("4_vjr1q")
+theme_override_styles/hover = ExtResource("5_pppfr")
+theme_override_styles/pressed = ExtResource("6_tsr2g")
+theme_override_styles/normal = ExtResource("7_xuysn")
+
+[node name="Label" type="Label" parent="TitlePanel/StartGame"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = -11.5
+offset_right = 52.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "START GAME"
+label_settings = SubResource("LabelSettings_ge7xm")
+
+[node name="Shop" type="Button" parent="TitlePanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 80.0
+offset_top = -56.0
+offset_right = 288.0
+offset_bottom = -8.0
+grow_vertical = 2
+theme_override_styles/disabled = ExtResource("4_vjr1q")
+theme_override_styles/hover = ExtResource("5_pppfr")
+theme_override_styles/pressed = ExtResource("6_tsr2g")
+theme_override_styles/normal = ExtResource("7_xuysn")
+
+[node name="Label" type="Label" parent="TitlePanel/Shop"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.5
+offset_top = -11.5
+offset_right = 20.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "SHOP"
+label_settings = SubResource("LabelSettings_20m61")
+
+[node name="Options" type="Button" parent="TitlePanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 80.0
+offset_top = 24.0
+offset_right = 288.0
+offset_bottom = 72.0
+grow_vertical = 2
+theme_override_styles/disabled = ExtResource("4_vjr1q")
+theme_override_styles/hover = ExtResource("5_pppfr")
+theme_override_styles/pressed = ExtResource("6_tsr2g")
+theme_override_styles/normal = ExtResource("7_xuysn")
+
+[node name="Label" type="Label" parent="TitlePanel/Options"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.0
+offset_top = -11.5
+offset_right = 37.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "OPTIONS"
+label_settings = SubResource("LabelSettings_baiac")
+
+[node name="Exit" type="Button" parent="TitlePanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 80.0
+offset_top = 104.0
+offset_right = 288.0
+offset_bottom = 152.0
+grow_vertical = 2
+theme_override_styles/disabled = ExtResource("4_vjr1q")
+theme_override_styles/hover = ExtResource("5_pppfr")
+theme_override_styles/pressed = ExtResource("6_tsr2g")
+theme_override_styles/normal = ExtResource("7_xuysn")
+
+[node name="Label" type="Label" parent="TitlePanel/Exit"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.5
+offset_top = -11.5
+offset_right = 23.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "QUIT"
+label_settings = SubResource("LabelSettings_b0myi")
+
+[node name="Label" type="Label" parent="TitlePanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -424.0
+offset_top = 16.0
+offset_right = 425.0
+offset_bottom = 77.0
+grow_horizontal = 2
+text = "LITTLE FROG BIG WORLD"
+label_settings = SubResource("LabelSettings_yyosj")
+
+[node name="Credits" type="Label" parent="TitlePanel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -360.0
+offset_top = -136.0
+offset_right = -84.0
+offset_bottom = -82.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "MUSIC FROM OPENGAMEART.ORG
+AMBER FOREST- TAD
+FOREST AMBIANCE- TINYWORLDS"
+label_settings = SubResource("LabelSettings_pjys5")
+horizontal_alignment = 1
+
+[node name="Credits2" type="Label" parent="TitlePanel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -312.0
+offset_top = -56.0
+offset_right = -139.0
+offset_bottom = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "GAME BY FIPMOTRON"
+label_settings = SubResource("LabelSettings_867bs")
+
+[node name="ScoreLabel" type="Label" parent="TitlePanel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = -88.0
+offset_right = 377.0
+offset_bottom = -57.0
+grow_vertical = 0
+text = "TOTAL SCORE:000000"
+label_settings = SubResource("LabelSettings_o8ps7")
+
+[node name="Frog" type="Sprite2D" parent="TitlePanel"]
+position = Vector2(712, 248)
+texture = ExtResource("15_u58j3")
+
+[node name="ShopPanel" type="NinePatchRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1440.0
+offset_top = -272.0
+offset_right = -480.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_l781b")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="Back" type="Button" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -56.0
+offset_right = 64.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/disabled = ExtResource("4_vjr1q")
+theme_override_styles/hover = ExtResource("5_pppfr")
+theme_override_styles/pressed = ExtResource("6_tsr2g")
+theme_override_styles/normal = ExtResource("7_xuysn")
+
+[node name="Label" type="Label" parent="ShopPanel/Back"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "BACK"
+label_settings = SubResource("LabelSettings_0np2p")
+
+[node name="Upgrades" type="Label" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -166.0
+offset_top = 32.0
+offset_right = 166.0
+offset_bottom = 93.0
+grow_horizontal = 2
+text = "UPGRADES"
+label_settings = SubResource("LabelSettings_ldphe")
+
+[node name="PoisonButton" type="Button" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -344.0
+offset_top = -408.0
+offset_right = -184.0
+offset_bottom = -373.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+theme_override_styles/disabled = ExtResource("4_vjr1q")
+theme_override_styles/hover = ExtResource("5_pppfr")
+theme_override_styles/pressed = ExtResource("6_tsr2g")
+theme_override_styles/normal = ExtResource("7_xuysn")
+
+[node name="Label" type="Label" parent="ShopPanel/PoisonButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -8.0
+offset_right = 50.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "BUY POISON"
+label_settings = SubResource("LabelSettings_xkc3l")
+
+[node name="KnockbackButton" type="Button" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -344.0
+offset_top = -296.0
+offset_right = -184.0
+offset_bottom = -261.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+theme_override_styles/disabled = ExtResource("4_vjr1q")
+theme_override_styles/hover = ExtResource("5_pppfr")
+theme_override_styles/pressed = ExtResource("6_tsr2g")
+theme_override_styles/normal = ExtResource("7_xuysn")
+
+[node name="Label" type="Label" parent="ShopPanel/KnockbackButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.5
+offset_top = -8.0
+offset_right = 67.5
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "BUY KNOCKBACK"
+label_settings = SubResource("LabelSettings_in646")
+
+[node name="StunButton" type="Button" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -344.0
+offset_top = -171.0
+offset_right = -184.0
+offset_bottom = -136.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+theme_override_styles/disabled = ExtResource("4_vjr1q")
+theme_override_styles/hover = ExtResource("5_pppfr")
+theme_override_styles/pressed = ExtResource("6_tsr2g")
+theme_override_styles/normal = ExtResource("7_xuysn")
+
+[node name="Label" type="Label" parent="ShopPanel/StunButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -8.0
+offset_right = 41.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "BUY STUN"
+label_settings = SubResource("LabelSettings_66x0l")
+
+[node name="HealthButton" type="Button" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 104.0
+offset_top = -408.0
+offset_right = 264.0
+offset_bottom = -373.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+theme_override_styles/disabled = ExtResource("4_vjr1q")
+theme_override_styles/hover = ExtResource("5_pppfr")
+theme_override_styles/pressed = ExtResource("6_tsr2g")
+theme_override_styles/normal = ExtResource("7_xuysn")
+
+[node name="Label" type="Label" parent="ShopPanel/HealthButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -51.5
+offset_top = -8.0
+offset_right = 51.5
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "BUY HEALTH"
+label_settings = SubResource("LabelSettings_jx7s4")
+
+[node name="JumpButton" type="Button" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 104.0
+offset_top = -296.0
+offset_right = 264.0
+offset_bottom = -261.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+theme_override_styles/disabled = ExtResource("4_vjr1q")
+theme_override_styles/hover = ExtResource("5_pppfr")
+theme_override_styles/pressed = ExtResource("6_tsr2g")
+theme_override_styles/normal = ExtResource("7_xuysn")
+
+[node name="Label" type="Label" parent="ShopPanel/JumpButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.5
+offset_top = -8.0
+offset_right = 45.5
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "BUY JUMPS"
+label_settings = SubResource("LabelSettings_7r714")
+
+[node name="TongueButton" type="Button" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 104.0
+offset_top = -171.0
+offset_right = 264.0
+offset_bottom = -136.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+theme_override_styles/disabled = ExtResource("4_vjr1q")
+theme_override_styles/hover = ExtResource("5_pppfr")
+theme_override_styles/pressed = ExtResource("6_tsr2g")
+theme_override_styles/normal = ExtResource("7_xuysn")
+
+[node name="Label" type="Label" parent="ShopPanel/TongueButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -6.5
+offset_right = 66.0
+offset_bottom = 6.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "BUY TONGUE LENGTH"
+label_settings = SubResource("LabelSettings_7on4s")
+
+[node name="Coinlabel" type="Label" parent="ShopPanel"]
+layout_mode = 1
+offset_left = 32.0
+offset_top = 56.0
+offset_right = 288.0
+offset_bottom = 104.0
+text = "COINS:0"
+label_settings = SubResource("LabelSettings_dfr57")
+
+[node name="OptionsPanel" type="NinePatchRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 480.0
+offset_top = -272.0
+offset_right = 1440.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_l781b")
+region_rect = Rect2(0, 0, 96, 96)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 2
+
+[node name="Back" type="Button" parent="OptionsPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -456.0
+offset_top = 200.0
+offset_right = -248.0
+offset_bottom = 248.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/disabled = ExtResource("4_vjr1q")
+theme_override_styles/hover = ExtResource("5_pppfr")
+theme_override_styles/pressed = ExtResource("6_tsr2g")
+theme_override_styles/normal = ExtResource("7_xuysn")
+
+[node name="Label" type="Label" parent="OptionsPanel/Back"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.51
+anchor_right = 0.5
+anchor_bottom = 0.51
+offset_left = -21.5
+offset_top = -11.98
+offset_right = 21.5
+offset_bottom = 11.02
+grow_horizontal = 2
+grow_vertical = 2
+text = "BACK"
+label_settings = SubResource("LabelSettings_50aq5")
+
+[node name="MusicSlider" type="HSlider" parent="OptionsPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 528.0
+offset_top = 16.0
+offset_right = 728.0
+offset_bottom = 56.0
+grow_vertical = 2
+scale = Vector2(2, 2)
+theme_override_icons/grabber = ExtResource("3_abh0u")
+theme_override_icons/grabber_highlight = ExtResource("4_6qcnc")
+theme_override_icons/grabber_disabled = ExtResource("5_npbld")
+theme_override_styles/slider = ExtResource("6_fj2mv")
+theme_override_styles/grabber_area = ExtResource("7_j4bon")
+theme_override_styles/grabber_area_highlight = ExtResource("7_j4bon")
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="Label" type="Label" parent="OptionsPanel/MusicSlider"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = -16.0
+offset_right = 128.0
+offset_bottom = 7.0
+text = "MUSIC"
+label_settings = SubResource("LabelSettings_jmd16")
+
+[node name="MasterSlider" type="HSlider" parent="OptionsPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 528.0
+offset_top = -96.0
+offset_right = 728.0
+offset_bottom = -56.0
+grow_vertical = 2
+scale = Vector2(2, 2)
+theme = SubResource("Theme_xdpyo")
+theme_override_icons/grabber = ExtResource("3_abh0u")
+theme_override_icons/grabber_highlight = ExtResource("4_6qcnc")
+theme_override_icons/grabber_disabled = ExtResource("5_npbld")
+theme_override_styles/slider = ExtResource("6_fj2mv")
+theme_override_styles/grabber_area = ExtResource("7_j4bon")
+theme_override_styles/grabber_area_highlight = ExtResource("7_j4bon")
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="Label" type="Label" parent="OptionsPanel/MasterSlider"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = -16.0
+offset_right = 137.0
+offset_bottom = 7.0
+text = "MASTER"
+label_settings = SubResource("LabelSettings_cmcnw")
+
+[node name="SFXSlider" type="HSlider" parent="OptionsPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 528.0
+offset_top = 128.0
+offset_right = 728.0
+offset_bottom = 168.0
+grow_vertical = 2
+scale = Vector2(2, 2)
+theme_override_icons/grabber = ExtResource("3_abh0u")
+theme_override_icons/grabber_highlight = ExtResource("4_6qcnc")
+theme_override_icons/grabber_disabled = ExtResource("5_npbld")
+theme_override_styles/slider = ExtResource("6_fj2mv")
+theme_override_styles/grabber_area = ExtResource("7_j4bon")
+theme_override_styles/grabber_area_highlight = ExtResource("7_j4bon")
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="Label" type="Label" parent="OptionsPanel/SFXSlider"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = -16.0
+offset_right = 117.0
+offset_bottom = 7.0
+text = "SFX"
+label_settings = SubResource("LabelSettings_y72d0")
+
+[node name="Options" type="Label" parent="OptionsPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -148.0
+offset_top = 32.0
+offset_right = 148.0
+offset_bottom = 93.0
+grow_horizontal = 2
+text = "OPTIONS"
+label_settings = SubResource("LabelSettings_w6abh")
+
+[node name="BirdEnemy-sheet" type="Sprite2D" parent="OptionsPanel"]
+position = Vector2(216, 256)
+scale = Vector2(2, 2)
+texture = ExtResource("14_27yvi")
+hframes = 9
+frame = 3
+
+[node name="QuitPanel" type="NinePatchRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = 272.0
+offset_right = 480.0
+offset_bottom = 816.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_l781b")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="Button" type="Button" parent="QuitPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -32.0
+offset_right = -64.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/disabled = ExtResource("4_vjr1q")
+theme_override_styles/hover = ExtResource("5_pppfr")
+theme_override_styles/pressed = ExtResource("6_tsr2g")
+theme_override_styles/normal = ExtResource("7_xuysn")
+
+[node name="Label" type="Label" parent="QuitPanel/Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -11.5
+offset_right = 80.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "NO, BRING ME BACK"
+label_settings = SubResource("LabelSettings_tlvmb")
+
+[node name="Button2" type="Button" parent="QuitPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 64.0
+offset_top = -32.0
+offset_right = 256.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/disabled = ExtResource("4_vjr1q")
+theme_override_styles/hover = ExtResource("5_pppfr")
+theme_override_styles/pressed = ExtResource("6_tsr2g")
+theme_override_styles/normal = ExtResource("7_xuysn")
+
+[node name="Label" type="Label" parent="QuitPanel/Button2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.0
+offset_top = -11.5
+offset_right = 76.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "YES, LET ME LEAVE"
+label_settings = SubResource("LabelSettings_4rdyb")
+
+[node name="Label" type="Label" parent="QuitPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -352.0
+offset_top = -192.0
+offset_right = 355.0
+offset_bottom = -125.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "ARE YOU SURE YOU WANT TO QUIT"
+label_settings = SubResource("LabelSettings_4ugtw")
+
+[node name="ButtonSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_ah42v")
+bus = &"SFX"
+
+[node name="Forest_AmbienceMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_kxq8p")
+volume_db = 5.0
+autoplay = true
+bus = &"Music"
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+z_index = -99
+z_as_relative = false
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-480, -272, -480, 272, 480, 272, 480, -272)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0ggx6")
+
+[connection signal="pressed" from="TitlePanel/StartGame" to="." method="_Start_Game"]
+[connection signal="pressed" from="TitlePanel/Shop" to="." method="_Shop"]
+[connection signal="pressed" from="TitlePanel/Options" to="." method="_Options"]
+[connection signal="pressed" from="TitlePanel/Exit" to="." method="_Exit"]
+[connection signal="pressed" from="ShopPanel/Back" to="." method="_Shop_Back"]
+[connection signal="pressed" from="ShopPanel/PoisonButton" to="." method="_Buy_Poison"]
+[connection signal="pressed" from="ShopPanel/KnockbackButton" to="." method="_Buy_Knockback"]
+[connection signal="pressed" from="ShopPanel/StunButton" to="." method="_Buy_Stun"]
+[connection signal="pressed" from="ShopPanel/HealthButton" to="." method="_Buy_Health"]
+[connection signal="pressed" from="ShopPanel/JumpButton" to="." method="_Buy_Jump"]
+[connection signal="pressed" from="ShopPanel/TongueButton" to="." method="_Buy_Tongue"]
+[connection signal="pressed" from="OptionsPanel/Back" to="." method="_Options_Back"]
+[connection signal="value_changed" from="OptionsPanel/MusicSlider" to="." method="_on_Music_value_changed"]
+[connection signal="value_changed" from="OptionsPanel/MasterSlider" to="." method="_on_master_value_changed"]
+[connection signal="value_changed" from="OptionsPanel/SFXSlider" to="." method="_on_SFX_value_changed"]
+[connection signal="pressed" from="QuitPanel/Button" to="." method="_Exit_Return"]
+[connection signal="pressed" from="QuitPanel/Button2" to="." method="_Quit_Game"]

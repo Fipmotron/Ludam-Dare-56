@@ -1,0 +1,6 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://8g2ena73biih"]
+
+[ext_resource type="Texture2D" uid="uid://dpkotdm6e422i" path="res://Sprites/SliderFill.png" id="1_fbgxs"]
+
+[resource]
+texture = ExtResource("1_fbgxs")

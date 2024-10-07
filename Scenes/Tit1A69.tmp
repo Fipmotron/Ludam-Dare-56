@@ -1,0 +1,406 @@
+[gd_scene load_steps=6 format=3 uid="uid://dydtjixyc8tph"]
+
+[ext_resource type="Script" path="res://Scripts/TitleScreen.gd" id="1_0ctw3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yyosj"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_ldphe"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_w6abh"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_4ugtw"]
+font_size = 48
+
+[node name="TitleScreen" type="Node2D"]
+script = ExtResource("1_0ctw3")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="TitlePanel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = -272.0
+offset_right = 480.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartGame" type="Button" parent="TitlePanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 80.0
+offset_top = -136.0
+offset_right = 288.0
+offset_bottom = -88.0
+grow_vertical = 2
+text = "Start Game"
+
+[node name="Shop" type="Button" parent="TitlePanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 80.0
+offset_top = -56.0
+offset_right = 288.0
+offset_bottom = -8.0
+grow_vertical = 2
+text = "Shop"
+
+[node name="Options" type="Button" parent="TitlePanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 80.0
+offset_top = 24.0
+offset_right = 288.0
+offset_bottom = 72.0
+grow_vertical = 2
+text = "Options"
+
+[node name="Exit" type="Button" parent="TitlePanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 80.0
+offset_top = 104.0
+offset_right = 288.0
+offset_bottom = 152.0
+grow_vertical = 2
+text = "Quit"
+
+[node name="Label" type="Label" parent="TitlePanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.5
+offset_right = 80.5
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Little Frog Big World"
+label_settings = SubResource("LabelSettings_yyosj")
+
+[node name="ShopPanel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1440.0
+offset_top = -272.0
+offset_right = -480.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Back" type="Button" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -56.0
+offset_right = 64.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back"
+
+[node name="Upgrades" type="Label" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -37.0
+offset_right = 37.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Upgrades"
+label_settings = SubResource("LabelSettings_ldphe")
+
+[node name="PoisonButton" type="Button" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -344.0
+offset_top = -408.0
+offset_right = -184.0
+offset_bottom = -373.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+text = "Buy Poison"
+
+[node name="KnockbackButton" type="Button" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -344.0
+offset_top = -296.0
+offset_right = -184.0
+offset_bottom = -261.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+text = "Buy Knockback"
+
+[node name="StunButton" type="Button" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -344.0
+offset_top = -171.0
+offset_right = -184.0
+offset_bottom = -136.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+text = "Buy Stun"
+
+[node name="HealthButton" type="Button" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 104.0
+offset_top = -408.0
+offset_right = 264.0
+offset_bottom = -373.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+text = "Buy Health"
+
+[node name="JumpButton" type="Button" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 104.0
+offset_top = -296.0
+offset_right = 264.0
+offset_bottom = -261.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+text = "Buy Jumps"
+
+[node name="TongueButton" type="Button" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 104.0
+offset_top = -171.0
+offset_right = 264.0
+offset_bottom = -136.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+text = "Buy Tongue Length"
+
+[node name="OptionsPanel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 480.0
+offset_top = -272.0
+offset_right = 1440.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Back" type="Button" parent="OptionsPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -456.0
+offset_top = 200.0
+offset_right = -248.0
+offset_bottom = 248.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Back"
+
+[node name="MusicSlider" type="HSlider" parent="OptionsPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 528.0
+offset_top = 16.0
+offset_right = 728.0
+offset_bottom = 56.0
+grow_vertical = 2
+scale = Vector2(2, 2)
+value = 50.0
+
+[node name="Label" type="Label" parent="OptionsPanel/MusicSlider"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = -16.0
+offset_right = 126.0
+offset_bottom = 7.0
+text = "Music"
+
+[node name="MasterSlider3" type="HSlider" parent="OptionsPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 528.0
+offset_top = -96.0
+offset_right = 728.0
+offset_bottom = -56.0
+grow_vertical = 2
+scale = Vector2(2, 2)
+value = 50.0
+
+[node name="Label" type="Label" parent="OptionsPanel/MasterSlider3"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = -20.0
+offset_right = 131.0
+offset_bottom = 3.0
+text = "Master"
+
+[node name="SFXSlider2" type="HSlider" parent="OptionsPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 528.0
+offset_top = 128.0
+offset_right = 728.0
+offset_bottom = 168.0
+grow_vertical = 2
+scale = Vector2(2, 2)
+value = 50.0
+
+[node name="Label" type="Label" parent="OptionsPanel/SFXSlider2"]
+layout_mode = 0
+offset_left = 88.0
+offset_top = -16.0
+offset_right = 116.0
+offset_bottom = 7.0
+text = "SFX"
+
+[node name="Options" type="Label" parent="OptionsPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Options"
+label_settings = SubResource("LabelSettings_w6abh")
+
+[node name="QuitPanel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = 272.0
+offset_right = 480.0
+offset_bottom = 816.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="QuitPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -32.0
+offset_right = -64.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "No, bring me back"
+
+[node name="Button2" type="Button" parent="QuitPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 64.0
+offset_top = -32.0
+offset_right = 256.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Yes, let me leave"
+
+[node name="Label" type="Label" parent="QuitPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -352.0
+offset_top = -192.0
+offset_right = 355.0
+offset_bottom = -125.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Are you sure you want to quit?"
+label_settings = SubResource("LabelSettings_4ugtw")
+
+[connection signal="pressed" from="TitlePanel/StartGame" to="." method="_Start_Game"]
+[connection signal="pressed" from="TitlePanel/Shop" to="." method="_Shop"]
+[connection signal="pressed" from="TitlePanel/Options" to="." method="_Options"]
+[connection signal="pressed" from="TitlePanel/Exit" to="." method="_Exit"]
+[connection signal="pressed" from="ShopPanel/Back" to="." method="_Shop_Back"]
+[connection signal="pressed" from="ShopPanel/PoisonButton" to="." method="_Buy_Poison"]
+[connection signal="pressed" from="ShopPanel/KnockbackButton" to="." method="_Buy_Knockback"]
+[connection signal="pressed" from="ShopPanel/StunButton" to="." method="_Buy_Stun"]
+[connection signal="pressed" from="ShopPanel/HealthButton" to="." method="_Buy_Health"]
+[connection signal="pressed" from="ShopPanel/JumpButton" to="." method="_Buy_Jump"]
+[connection signal="pressed" from="ShopPanel/TongueButton" to="." method="_Buy_Tongue"]
+[connection signal="pressed" from="OptionsPanel/Back" to="." method="_Options_Back"]
+[connection signal="pressed" from="QuitPanel/Button" to="." method="_Exit_Return"]
+[connection signal="pressed" from="QuitPanel/Button2" to="." method="_Quit_Game"]

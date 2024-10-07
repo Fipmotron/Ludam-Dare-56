@@ -1,0 +1,211 @@
+[gd_scene load_steps=21 format=3 uid="uid://cr1nwy84mkucq"]
+
+[ext_resource type="Script" path="res://Scripts/Bird.gd" id="1_rtexe"]
+[ext_resource type="Material" uid="uid://yw1j4ntmvlxi" path="res://Resources/FlashMat.tres" id="1_xv1h8"]
+[ext_resource type="PackedScene" uid="uid://co2b4ux0gd65n" path="res://Entitys/HealthComponent.tscn" id="2_et5xy"]
+[ext_resource type="Texture2D" uid="uid://csuqwqeg2gvo4" path="res://Sprites/BirdEnemy-Sheet.png" id="3_mmqse"]
+[ext_resource type="PackedScene" uid="uid://beh35mk0kiu2y" path="res://Entitys/HitboxComponent.tscn" id="3_pn7ly"]
+[ext_resource type="PackedScene" uid="uid://dc4ke7vuuhgt2" path="res://Entitys/Particles/deathparticlesmedium.tscn" id="5_o5yik"]
+[ext_resource type="AudioStream" uid="uid://duuksi6gord5i" path="res://Audio/SFX/BirdFlySFX.wav" id="6_ounho"]
+[ext_resource type="AudioStream" uid="uid://cib7wltx1hyl" path="res://Audio/SFX/EnemyHitSFX.wav" id="7_abel5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ellda"]
+size = Vector2(80, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8namh"]
+size = Vector2(80, 128)
+
+[sub_resource type="Animation" id="Animation_wojsh"]
+resource_name = "Flash"
+length = 0.1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_qq7ae"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vq2mq"]
+_data = {
+"Flash": SubResource("Animation_wojsh"),
+"RESET": SubResource("Animation_qq7ae")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xps56"]
+size = Vector2(80, 128)
+
+[sub_resource type="Animation" id="Animation_ev60b"]
+resource_name = "FlyUp"
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_3lppe"]
+resource_name = "Flydown"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_vvqck"]
+resource_name = "Grounded"
+length = 0.8
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 2]
+}
+
+[sub_resource type="Animation" id="Animation_n7lsp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_hovuf"]
+resource_name = "Stun"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [5, 6, 7, 8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e4a0t"]
+_data = {
+"FlyUp": SubResource("Animation_ev60b"),
+"Flydown": SubResource("Animation_3lppe"),
+"Grounded": SubResource("Animation_vvqck"),
+"RESET": SubResource("Animation_n7lsp"),
+"Stun": SubResource("Animation_hovuf")
+}
+
+[node name="Bird" type="CharacterBody2D"]
+material = ExtResource("1_xv1h8")
+collision_layer = 64
+collision_mask = 128
+script = ExtResource("1_rtexe")
+flySpeed = 100.0
+landingBounds = Vector2(-416, 416)
+groundedTime = 5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ellda")
+
+[node name="Polygon2D" type="Sprite2D" parent="."]
+use_parent_material = true
+position = Vector2(0, -8)
+texture = ExtResource("3_mmqse")
+hframes = 9
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("Parent") instance=ExtResource("2_et5xy")]
+collision_mask = 4
+Parent = NodePath("..")
+maxHealth = 10.0
+score = 2500
+deathParticles = ExtResource("5_o5yik")
+
+[node name="CollisionShape2D" parent="HealthComponent" index="0"]
+shape = SubResource("RectangleShape2D_8namh")
+
+[node name="FlashPlayer" type="AnimationPlayer" parent="HealthComponent"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_vq2mq")
+}
+
+[node name="HitboxComponent" parent="." instance=ExtResource("3_pn7ly")]
+damage = 4.0
+knockback = true
+
+[node name="CollisionShape2D" parent="HitboxComponent" index="0"]
+shape = SubResource("RectangleShape2D_xps56")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_e4a0t")
+}
+
+[node name="SFX" type="Node2D" parent="."]
+
+[node name="BirdFlySFX" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("6_ounho")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="HitSFX" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("7_abel5")
+bus = &"SFX"
+
+[editable path="HealthComponent"]
+[editable path="HitboxComponent"]

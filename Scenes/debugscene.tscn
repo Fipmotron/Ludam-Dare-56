@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://dgk2t47i5qhyd"]
+
+[ext_resource type="PackedScene" uid="uid://ds7kbryegu2ya" path="res://Entitys/Player.tscn" id="1_d8gpr"]
+[ext_resource type="PackedScene" uid="uid://7cvsxds2u8h0" path="res://Entitys/Raccoon.tscn" id="2_0c2ud"]
+[ext_resource type="Shader" path="res://Resources/Flash.gdshader" id="2_xl6lh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mfgal"]
+size = Vector2(672, 160)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_44gja"]
+resource_local_to_scene = true
+shader = ExtResource("2_xl6lh")
+shader_parameter/flash_color = null
+shader_parameter/flash_value = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dlwyj"]
+resource_local_to_scene = true
+shader = ExtResource("2_xl6lh")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 0.0
+
+[node name="DebugScene" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 80)
+shape = SubResource("RectangleShape2D_mfgal")
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D"]
+color = Color(0.488072, 0.625078, 9.62615e-07, 1)
+polygon = PackedVector2Array(-336, 0, -336, 160, 336, 160, 336, 0)
+
+[node name="Player" parent="." instance=ExtResource("1_d8gpr")]
+material = SubResource("ShaderMaterial_44gja")
+position = Vector2(0, -16)
+
+[node name="Raccoon" parent="." instance=ExtResource("2_0c2ud")]
+material = SubResource("ShaderMaterial_dlwyj")
+position = Vector2(-384, -128)

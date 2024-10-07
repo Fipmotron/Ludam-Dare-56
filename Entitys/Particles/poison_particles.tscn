@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8wrfphup0ykx"]
+
+[ext_resource type="Script" path="res://Scripts/ParticleDeath.gd" id="1_uts27"]
+
+[sub_resource type="Curve" id="Curve_0enha"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.486667, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_uix6l"]
+curve = SubResource("Curve_0enha")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vkrid"]
+particle_flag_disable_z = true
+initial_velocity_min = -50.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, -250, 0)
+scale_min = 5.0
+scale_max = 7.0
+scale_curve = SubResource("CurveTexture_uix6l")
+color = Color(0.474208, 0.00142583, 0.667467, 1)
+
+[node name="poisonParticles" type="GPUParticles2D"]
+z_index = 1
+z_as_relative = false
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_vkrid")
+one_shot = true
+script = ExtResource("1_uts27")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://co2b4ux0gd65n"]
+
+[ext_resource type="Script" path="res://Scripts/HealthComponent.gd" id="1_e5ytn"]
+[ext_resource type="PackedScene" uid="uid://c8wrfphup0ykx" path="res://Entitys/Particles/poison_particles.tscn" id="2_yvld5"]
+
+[node name="HealthComponent" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_e5ytn")
+poisonParticles = ExtResource("2_yvld5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_Area_Entered"]

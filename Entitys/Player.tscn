@@ -1,0 +1,290 @@
+[gd_scene load_steps=26 format=3 uid="uid://ds7kbryegu2ya"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_2o3df"]
+[ext_resource type="Material" uid="uid://yw1j4ntmvlxi" path="res://Resources/FlashMat.tres" id="1_rrsq6"]
+[ext_resource type="PackedScene" uid="uid://co2b4ux0gd65n" path="res://Entitys/HealthComponent.tscn" id="2_hinwc"]
+[ext_resource type="Texture2D" uid="uid://bdk4b4yvsm2wf" path="res://Sprites/FrogPlayer-Sheet.png" id="2_knebm"]
+[ext_resource type="PackedScene" uid="uid://uj5qka5hbjw1" path="res://Entitys/Particles/walk_particles.tscn" id="2_sl3yh"]
+[ext_resource type="PackedScene" uid="uid://beh35mk0kiu2y" path="res://Entitys/HitboxComponent.tscn" id="3_hc7hh"]
+[ext_resource type="PackedScene" uid="uid://cweri7qjd32yn" path="res://Entitys/death_sfx.tscn" id="3_xx6wg"]
+[ext_resource type="PackedScene" uid="uid://dxsafhn7nvwgt" path="res://Entitys/Particles/deathparticlessmall.tscn" id="5_fm43q"]
+[ext_resource type="AudioStream" uid="uid://b2y2psfk7qyxt" path="res://Audio/SFX/FlyeatSFX.wav" id="6_5ljkg"]
+[ext_resource type="AudioStream" uid="uid://c7cad8ephx4mr" path="res://Audio/SFX/FrogGrassWalkSFX.wav" id="8_mnyy3"]
+[ext_resource type="AudioStream" uid="uid://ct1t0xqxwvfyk" path="res://Audio/SFX/FrogHitSFX.wav" id="8_r38qu"]
+[ext_resource type="AudioStream" uid="uid://cy4u7rkvo15ff" path="res://Audio/SFX/FrogJumpSFX.wav" id="9_hyrwl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_62cf4"]
+size = Vector2(16, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0h5d0"]
+size = Vector2(16, 16)
+
+[sub_resource type="Animation" id="Animation_wojsh"]
+resource_name = "Flash"
+length = 0.1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 1.0, 0.9, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_qq7ae"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vq2mq"]
+_data = {
+"Flash": SubResource("Animation_wojsh"),
+"RESET": SubResource("Animation_qq7ae")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s5ctm"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2chrj"]
+
+[sub_resource type="Animation" id="Animation_nx0k0"]
+resource_name = "Idle"
+length = 0.45
+loop_mode = 1
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.142857, 0.285714),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_fuokw"]
+resource_name = "InAir"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [7, 8, 9, 10]
+}
+
+[sub_resource type="Animation" id="Animation_s2ll7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_pb8w5"]
+resource_name = "Run"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 6]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_Walk_SFX"
+}, {
+"args": [],
+"method": &"_Walk_SFX"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_Walk_Particle"
+}, {
+"args": [],
+"method": &"_Walk_Particle"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_y6sen"]
+resource_name = "Stun"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [11, 12, 13, 14]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tiwj6"]
+_data = {
+"Idle": SubResource("Animation_nx0k0"),
+"InAir": SubResource("Animation_fuokw"),
+"RESET": SubResource("Animation_s2ll7"),
+"Run": SubResource("Animation_pb8w5"),
+"Stun": SubResource("Animation_y6sen")
+}
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+position = Vector2(0, -32)
+collision_layer = 0
+script = ExtResource("1_2o3df")
+moveSpeed = 250.0
+termVelocity = 1000.0
+gravity = 25.0
+jumpForce = 750.0
+maxJumps = 1
+walkPart = ExtResource("2_sl3yh")
+tonugeLength = 25.0
+deathSFX = ExtResource("3_xx6wg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_62cf4")
+
+[node name="Polygon2D" type="Sprite2D" parent="."]
+material = ExtResource("1_rrsq6")
+texture = ExtResource("2_knebm")
+hframes = 15
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("Parent") instance=ExtResource("2_hinwc")]
+Parent = NodePath("..")
+maxHealth = 10.0
+deathParticles = ExtResource("5_fm43q")
+
+[node name="CollisionShape2D" parent="HealthComponent" index="0"]
+shape = SubResource("RectangleShape2D_0h5d0")
+
+[node name="FlashPlayer" type="AnimationPlayer" parent="HealthComponent"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_vq2mq")
+}
+
+[node name="FlyEater" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlyEater"]
+shape = SubResource("RectangleShape2D_s5ctm")
+
+[node name="TonugeLine" type="Line2D" parent="."]
+show_behind_parent = true
+points = PackedVector2Array(0, 0, 0, 0)
+width = 2.0
+default_color = Color(1, 0, 0, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Tonuge" type="Polygon2D" parent="TonugeLine"]
+scale = Vector2(0.25, 0.25)
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
+
+[node name="HitboxComponent" parent="TonugeLine/Tonuge" instance=ExtResource("3_hc7hh")]
+collision_layer = 12
+knockback = true
+knockbackLevel = 0
+poison = true
+poisonLevel = 0
+stun = true
+stunLevel = 0
+
+[node name="CollisionShape2D" parent="TonugeLine/Tonuge/HitboxComponent" index="0"]
+shape = SubResource("RectangleShape2D_2chrj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tiwj6")
+}
+
+[node name="SFX" type="Node2D" parent="."]
+
+[node name="FlyeatSFX" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("6_5ljkg")
+bus = &"SFX"
+
+[node name="FrogGrassWalkSFX" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("8_mnyy3")
+bus = &"SFX"
+
+[node name="FrogHitSFX" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("8_r38qu")
+bus = &"SFX"
+
+[node name="FrogJumpSFX" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("9_hyrwl")
+bus = &"SFX"
+
+[connection signal="area_entered" from="FlyEater" to="." method="_Fly_SFX"]
+
+[editable path="HealthComponent"]
+[editable path="TonugeLine/Tonuge/HitboxComponent"]

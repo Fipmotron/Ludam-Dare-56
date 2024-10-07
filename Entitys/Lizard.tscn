@@ -1,0 +1,191 @@
+[gd_scene load_steps=19 format=3 uid="uid://b4xxbe3wa8glk"]
+
+[ext_resource type="PackedScene" uid="uid://co2b4ux0gd65n" path="res://Entitys/HealthComponent.tscn" id="1_25omc"]
+[ext_resource type="Script" path="res://Scripts/Lizard.gd" id="1_b0n5k"]
+[ext_resource type="Material" uid="uid://yw1j4ntmvlxi" path="res://Resources/FlashMat.tres" id="1_sy6n0"]
+[ext_resource type="PackedScene" uid="uid://beh35mk0kiu2y" path="res://Entitys/HitboxComponent.tscn" id="2_hylya"]
+[ext_resource type="Texture2D" uid="uid://ckbbla06ff2yq" path="res://Sprites/SnakeEnemy-Sheet.png" id="3_05cvd"]
+[ext_resource type="PackedScene" uid="uid://dc4ke7vuuhgt2" path="res://Entitys/Particles/deathparticlesmedium.tscn" id="5_uwxs0"]
+[ext_resource type="AudioStream" uid="uid://deq86mlk86sdb" path="res://Audio/SFX/SnakeSlitherSFX.wav" id="6_8tsx7"]
+[ext_resource type="AudioStream" uid="uid://cib7wltx1hyl" path="res://Audio/SFX/EnemyHitSFX.wav" id="7_6cwm1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sop36"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1prjm"]
+size = Vector2(64, 64)
+
+[sub_resource type="Animation" id="Animation_wojsh"]
+resource_name = "Flash"
+length = 0.1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_qq7ae"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vq2mq"]
+_data = {
+"Flash": SubResource("Animation_wojsh"),
+"RESET": SubResource("Animation_qq7ae")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tk0kx"]
+size = Vector2(64, 64)
+
+[sub_resource type="Animation" id="Animation_qduyi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_bqhow"]
+resource_name = "Slither"
+length = 0.6
+loop_mode = 1
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.142857, 0.428571),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_Slither_SFX"
+}, {
+"args": [],
+"method": &"_Slither_SFX"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_35645"]
+resource_name = "Stun"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4qmpj"]
+_data = {
+"RESET": SubResource("Animation_qduyi"),
+"Slither": SubResource("Animation_bqhow"),
+"Stun": SubResource("Animation_35645")
+}
+
+[node name="Lizard" type="CharacterBody2D"]
+material = ExtResource("1_sy6n0")
+collision_layer = 64
+script = ExtResource("1_b0n5k")
+moveSpeed = 250.0
+direction = 1
+Gravity = 25.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_sop36")
+
+[node name="Polygon2D" type="Sprite2D" parent="."]
+use_parent_material = true
+position = Vector2(0, -8)
+texture = ExtResource("3_05cvd")
+hframes = 8
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("Parent") instance=ExtResource("1_25omc")]
+visible = false
+collision_mask = 4
+Parent = NodePath("..")
+maxHealth = 3.0
+deathParticles = ExtResource("5_uwxs0")
+
+[node name="CollisionShape2D" parent="HealthComponent" index="0"]
+shape = SubResource("RectangleShape2D_1prjm")
+
+[node name="FlashPlayer" type="AnimationPlayer" parent="HealthComponent"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_vq2mq")
+}
+
+[node name="HitboxComponent" parent="." instance=ExtResource("2_hylya")]
+visible = false
+damage = 2.0
+
+[node name="CollisionShape2D" parent="HitboxComponent" index="0"]
+shape = SubResource("RectangleShape2D_tk0kx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4qmpj")
+}
+
+[node name="SFX" type="Node2D" parent="."]
+
+[node name="SlitherSFX" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("6_8tsx7")
+pitch_scale = 2.0
+bus = &"SFX"
+
+[node name="HitSFX" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("7_6cwm1")
+bus = &"SFX"
+
+[editable path="HealthComponent"]
+[editable path="HitboxComponent"]

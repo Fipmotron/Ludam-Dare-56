@@ -1,0 +1,92 @@
+[gd_scene load_steps=10 format=3 uid="uid://bacfcmpoangvs"]
+
+[ext_resource type="Script" path="res://Scripts/Fly.gd" id="1_qq5uh"]
+[ext_resource type="Texture2D" uid="uid://dh3imahjxdnep" path="res://Sprites/FireFly-Sheet.png" id="2_bu3c0"]
+[ext_resource type="AudioStream" uid="uid://b2y2psfk7qyxt" path="res://Audio/SFX/FlyeatSFX.wav" id="3_o4j8k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_av3am"]
+size = Vector2(16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i3q3w"]
+radius = 6.08276
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aq6o0"]
+radius = 7.07107
+
+[sub_resource type="Animation" id="Animation_saaix"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_0gxqs"]
+resource_name = "fly"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1d4vi"]
+_data = {
+"RESET": SubResource("Animation_saaix"),
+"fly": SubResource("Animation_0gxqs")
+}
+
+[node name="FireFly" type="CharacterBody2D"]
+collision_layer = 64
+script = ExtResource("1_qq5uh")
+poisonPlayer = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_av3am")
+
+[node name="Polygon2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_bu3c0")
+hframes = 3
+
+[node name="TongueChecker" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TongueChecker"]
+shape = SubResource("CircleShape2D_i3q3w")
+
+[node name="EatenChecker" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EatenChecker"]
+shape = SubResource("CircleShape2D_aq6o0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1d4vi")
+}
+
+[node name="SFX" type="Node2D" parent="."]
+
+[node name="FlyeatSFX" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("3_o4j8k")
+bus = &"SFX"
+
+[connection signal="area_entered" from="TongueChecker" to="." method="_Area_Entered"]
+[connection signal="area_entered" from="EatenChecker" to="." method="_Eaten_Checker"]

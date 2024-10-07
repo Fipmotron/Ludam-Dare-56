@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bveicrpf81oyr"]
+
+[ext_resource type="Script" path="res://Scripts/ParticleDeath.gd" id="1_luj7p"]
+
+[sub_resource type="Curve" id="Curve_rmm2h"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_lqycq"]
+curve = SubResource("Curve_rmm2h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2qpwx"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 300.0
+initial_velocity_max = 350.0
+gravity = Vector3(0, 750, 0)
+scale_min = 7.0
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_lqycq")
+
+[node name="Deathparticlesbig" type="GPUParticles2D"]
+emitting = false
+amount = 25
+process_material = SubResource("ParticleProcessMaterial_2qpwx")
+one_shot = true
+explosiveness = 0.95
+script = ExtResource("1_luj7p")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

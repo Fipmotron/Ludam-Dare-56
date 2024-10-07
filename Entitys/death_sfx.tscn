@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cweri7qjd32yn"]
+
+[ext_resource type="AudioStream" uid="uid://bbltmu2i651ug" path="res://Audio/SFX/deathSFX.wav" id="1_xwk88"]
+[ext_resource type="Script" path="res://Scripts/death.gd" id="2_bgd54"]
+
+[node name="deathSFX" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_xwk88")
+bus = &"SFX"
+script = ExtResource("2_bgd54")
+
+[connection signal="finished" from="." to="." method="_on_finished"]
